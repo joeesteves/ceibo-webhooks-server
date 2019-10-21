@@ -7,7 +7,8 @@
 # General application configuration
 use Mix.Config
 config :ceibo_webhook_server,
-  redmine_url: "https://pm.ceibo.co"
+  redmine_url: "https://pm.ceibo.co/issues.json",
+  redmine_key: System.get_env("REDMINE_KEY")
 
 # Configures the endpoint
 config :ceibo_webhook_server, CeiboWebhookServerWeb.Endpoint,
