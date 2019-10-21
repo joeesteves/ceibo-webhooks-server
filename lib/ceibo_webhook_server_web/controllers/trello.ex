@@ -1,7 +1,8 @@
 defmodule CeiboWebhookServerWeb.TrelloController do
   use CeiboWebhookServerWeb, :controller
 
-  def index(conn, _params) do
+  def index(conn, params) do
+    IO.inspect params
     json(conn, "HOLA MUNDO")
   end
 end
