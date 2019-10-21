@@ -1,13 +1,31 @@
 defmodule CeiboWebhookServer.TrelloActionParser do
-  def parse(data) do
-    action = get_in(data, ["action", "type"])
+  def filter(data) do
+    action = get_in(data, ~w(action type))
 
-    if action == "addMemberToCard" do
-      member_name = get_in(data, ["action", "data", "member", "name"])
-
-      String.match?(member_name, ~r/Esteves/) && {:ok} || {:filtered}
-    else
+    (action == "addMemberToCard" &&
+       get_in(data, ~w(action data member name)) |> String.match?(~r/Esteves/) &&
+       {:ok, data}) ||
       {:filtered}
-    end
+  end
+
+  def parse({:ok, data}) do
+    card = get_in(data, ~w(action card))
+
+    {:ok,
+     %{
+       issue: %{
+         project_id: redmine_project_id("ceibo"),
+         subject: card["name"]
+       }
+     }}
+  end
+
+  def parse(status), do: status
+
+  def redmine_project_id(name) do
+    %{
+      "ceibo" => 2
+    }
+    |> Map.get(name)
   end
 end

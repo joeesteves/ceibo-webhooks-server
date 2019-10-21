@@ -2,16 +2,32 @@ defmodule TrelloActionParserTest do
   use ExUnit.Case
   Code.require_file("test/data/trello_action.exs")
 
+  alias CeiboWebhookServer.TrelloActionParser
+
   describe "trello parser" do
     test "addMemeber && Esteves" do
       data = MockData.trello_card()
 
-      assert CeiboWebhookServer.TrelloActionParser.parse(data) == {:ok}
+      assert {:ok, _} = TrelloActionParser.filter(data)
     end
+
     test "addMemeber && not Esteves" do
       data = MockData.trello_card_wrong_member()
 
-      assert CeiboWebhookServer.TrelloActionParser.parse(data) == {:filtered}
+      assert {:filtered} == TrelloActionParser.filter(data)
+    end
+
+    test "parse ok card" do
+      data = MockData.trello_card()
+
+      assert {:ok, card} = TrelloActionParser.filter(data) |> TrelloActionParser.parse
+      assert (~w(project_id subject) -- get_in(card, ~w(issue)) |> Map.keys) == []
+    end
+
+    test "parse filtered" do
+      data = MockData.trello_card_wrong_member()
+
+      assert {:filtered} == TrelloActionParser.filter(data) |> TrelloActionParser.parse
     end
   end
 end
