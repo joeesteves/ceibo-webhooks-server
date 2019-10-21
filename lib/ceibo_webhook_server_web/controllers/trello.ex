@@ -1,24 +1,30 @@
 defmodule CeiboWebhookServerWeb.TrelloController do
   use CeiboWebhookServerWeb, :controller
+  alias CeiboWebhookServer.TrelloActionParser
 
   def index(conn, params) do
-    redmine_response =
-      HTTPoison.post(
-        Application.get_env(:ceibo_webhook_server, :redmine_url),
-        %{
-          issue: %{
-            project_id: 2,
-            subject: "example",
-          }
-        } |> Jason.encode!,
-        [
-          {"content-type", "application/json"},
-          {"X-Redmine-API-Key", Application.get_env(:ceibo_webhook_server, :redmine_key)}
-        ]
-      ) |> IO.inspect
+    parsed_card =
+      TrelloActionParser.filter(params)
+      |> TrelloActionParser.parse
+
+    result =
+      case parsed_card do
+        {:ok, card} ->
+          HTTPoison.post(
+            Application.get_env(:ceibo_webhook_server, :redmine_url),
+            card |> Jason.encode!(),
+            [
+              {"content-type", "application/json"},
+              {"X-Redmine-API-Key", Application.get_env(:ceibo_webhook_server, :redmine_key)}
+            ]
+          )
+
+        _ ->
+          {:filtered}
+      end
 
     resp =
-      case redmine_response do
+      case result do
         {:ok, %HTTPoison.Response{body: body}} ->
           body
 
