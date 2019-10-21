@@ -1,0 +1,95 @@
+{
+  "projects": [
+    {
+      "id": 11,
+      "name": "Banco de Alimentos de Rosario",
+      "identifier": "bar",
+      "description": "",
+      "status": 1,
+      "is_public": true,
+      "inherit_members": false,
+      "created_on": "2019-10-16T12:14:59Z",
+      "updated_on": "2019-10-16T12:24:10Z"
+    },
+    {
+      "id": 3,
+      "name": "BuenosAires ToGo",
+      "identifier": "batogo",
+      "description": "e-commerce de turismo\r\n\r\n",
+      "status": 1,
+      "is_public": false,
+      "inherit_members": false,
+      "created_on": "2019-09-28T12:11:25Z",
+      "updated_on": "2019-10-04T18:07:03Z"
+    },
+    {
+      "id": 2,
+      "name": "Ceibo",
+      "identifier": "ceibo",
+      "description": "Software Dev",
+      "status": 1,
+      "is_public": true,
+      "inherit_members": false,
+      "created_on": "2019-09-27T21:22:07Z",
+      "updated_on": "2019-10-21T17:47:44Z"
+    },
+    {
+      "id": 9,
+      "name": "CrossHero",
+      "identifier": "crosshero",
+      "description": "",
+      "status": 1,
+      "is_public": false,
+      "inherit_members": false,
+      "created_on": "2019-10-03T16:07:23Z",
+      "updated_on": "2019-10-03T18:12:33Z"
+    },
+    {
+      "id": 10,
+      "name": "Isowean",
+      "identifier": "isowean",
+      "description": "",
+      "status": 1,
+      "is_public": false,
+      "inherit_members": false,
+      "created_on": "2019-10-08T18:00:47Z",
+      "updated_on": "2019-10-10T14:11:08Z"
+    },
+    {
+      "id": 5,
+      "name": "Lucius",
+      "identifier": "lucius",
+      "description": "Gestión Agropecuaria",
+      "status": 1,
+      "is_public": true,
+      "inherit_members": false,
+      "created_on": "2019-10-01T19:01:47Z",
+      "updated_on": "2019-10-17T11:54:04Z"
+    },
+    {
+      "id": 4,
+      "name": "Mu • Gestión Ganadera Simple",
+      "identifier": "mu",
+      "description": "",
+      "status": 1,
+      "is_public": false,
+      "inherit_members": false,
+      "created_on": "2019-10-01T13:50:08Z",
+      "updated_on": "2019-10-02T20:19:30Z"
+    },
+    {
+      "id": 8,
+      "name": "Zonatic",
+      "identifier": "zonatic",
+      "description": "TRANSFORMANDO EMPRESAS EN MÉXICO",
+      "status": 1,
+      "is_public": false,
+      "inherit_members": false,
+      "created_on": "2019-10-02T17:24:10Z",
+      "updated_on": "2019-10-16T18:28:52Z"
+    }
+  ],
+  "total_count": 8,
+  "offset": 0,
+  "limit": 25
+}

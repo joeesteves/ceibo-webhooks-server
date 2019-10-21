@@ -27,7 +27,14 @@ defmodule CeiboWebhookServer.TrelloActionParser do
 
   defp redmine_project_id(name) do
     %{
-      "ceibo" => 2
+      "bar" => 11,
+      "ceibo" => 2,
+      "batogo" => 3,
+      "crosshero" => 9,
+      "isowean" => 10,
+      "lucius" => 5,
+      "mu" => 4,
+      "zonatic" => 8
     }
     |> Map.get(name)
   end

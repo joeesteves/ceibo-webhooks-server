@@ -8,7 +8,9 @@
 use Mix.Config
 config :ceibo_webhook_server,
   redmine_url: "https://pm.ceibo.co/issues.json",
-  redmine_key: System.get_env("REDMINE_KEY")
+  redmine_key: System.get_env("REDMINE_KEY"),
+  trello_key: System.get_env("TRELLO_KEY"),
+  trello_token: System.get_env("TRELLO_TOKEN")
 
 # Configures the endpoint
 config :ceibo_webhook_server, CeiboWebhookServerWeb.Endpoint,

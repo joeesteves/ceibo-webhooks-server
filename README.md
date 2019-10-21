@@ -1,18 +1,14 @@
-# CeiboWebhookServer
+# To create new trello hooks
 
-To start your Phoenix server:
+```bash
+$> iex -S mix
+$> CeiboWebhookServer.TrelloHooks.create(model_id, redmine_project_alias)
 
-  * Install dependencies with `mix deps.get`
-  * Start Phoenix endpoint with `mix phx.server`
+```
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+* Must have TRELLO_KEY and TRELLO_TOKEN as env variables
+* Also project must be listed on trello_action_parser
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+To add new remine proyects check pm.ceibo.co/projects.json?key=#{redmine_key}
 
-## Learn more
-
-  * Official website: http://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+To get trello model_id add .json to board url
