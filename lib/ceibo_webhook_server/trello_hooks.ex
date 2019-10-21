@@ -7,7 +7,7 @@ defmodule CeiboWebhookServer.TrelloHooks do
       "https://api.trello.com/1/tokens/#{token}/webhooks/",
       %{
         key: key,
-        callbackURL: "http://hooks.ceibo.co/trello?project?#{project_redmine_name}",
+        callbackURL: "http://hooks.ceibo.co/trello?project=#{project_redmine_name}",
         idModel: model_id,
         description: "#{project_redmine_name} redmine hook"
       }
