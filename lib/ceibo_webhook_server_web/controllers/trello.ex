@@ -6,6 +6,7 @@ defmodule CeiboWebhookServerWeb.TrelloController do
     parsed_card =
       TrelloActionParser.filter(params)
       |> TrelloActionParser.parse
+      |> IO.inspect
 
     result =
       case parsed_card do

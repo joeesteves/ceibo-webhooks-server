@@ -34,7 +34,8 @@ defmodule CeiboWebhookServer.TrelloActionParser do
       "isowean" => 10,
       "lucius" => 5,
       "mu" => 4,
-      "zonatic" => 8
+      "zonatic" => 8,
+      "innopor" => 12
     }
     |> Map.get(name)
   end
