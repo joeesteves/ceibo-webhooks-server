@@ -8,6 +8,7 @@ defmodule CeiboWebhookServerWeb.Router do
   scope "/trello", CeiboWebhookServerWeb do
     pipe_through :api
     post "/", TrelloController, :index
+    get "/", TrelloController, :validate
   end
 
   scope "/monday", CeiboWebhookServerWeb do

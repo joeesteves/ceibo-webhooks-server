@@ -35,4 +35,8 @@ defmodule CeiboWebhookServerWeb.TrelloController do
 
     json(conn, resp)
   end
+
+  def validate(conn,_params) do
+    json(put_status(conn, 200), "Hey")
+  end
 end
