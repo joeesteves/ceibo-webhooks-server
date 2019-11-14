@@ -4,17 +4,17 @@ defmodule CeiboWebhookServer.Monday do
 end
 
 defimpl CeiboWebhookServer.Redminable, for: CeiboWebhookServer.Monday do
-  def is_assigned_to(asigned_to_pattern, data) do
-    column = get_in(data, ~w(event columnId))
+  def is_assigned_to(remineable, assigned_to_pattern) do
+    column = get_in(remineable, ~w(event columnId))
 
     (column == "person" &&
-       assigned_to_value(data) |> String.match?(assigned_to_pattern) &&
-       {:ok, data}) ||
+       assigned_to_value(remineable) |> String.match?(assigned_to_pattern) &&
+       {:ok, remineable}) ||
       {:filtered}
   end
 
-  def card(data) do
-    pulse = get_in(data, ~w(data items)) |> List.first
+  def card(remineable) do
+    pulse = get_in(remineable, ~w(remineable items)) |> List.first
 
     {:ok,
      %{
@@ -26,8 +26,8 @@ defimpl CeiboWebhookServer.Redminable, for: CeiboWebhookServer.Monday do
     }}
   end
 
-  defp assigned_to_value(data) do
-    person = get_in(data, ~w(value personsAndTeams)) |> List.first
+  defp assigned_to_value(remineable) do
+    person = get_in(remineable, ~w(value personsAndTeams)) |> List.first
     id = ~s(#{Map.get(person,"id")})
   end
 end

@@ -1,4 +1,16 @@
+defprotocol CeiboWebhookServer.Redminable do
+  def is_assigned_to(redminable, data)
+  def card(redminable)
+end
+
 defmodule CeiboWebhookServer.Redmine do
+  def is_assigned_to(remineable, pattern) do
+    Redminable.is_assigned_to(redminable, data)
+  end
+
+  def card(remineable) do
+    Redminable.is_assigned_to(redminable, data)
+  end
 
   def project_id(name) do
     %{
@@ -14,10 +26,4 @@ defmodule CeiboWebhookServer.Redmine do
     }
     |> Map.get(name)
   end
-
-end
-
-defprotocol CeiboWebhookServer.Redminable do
-  def is_assigned_to(asigned_to_pattern, data)
-  def card(data)
 end
