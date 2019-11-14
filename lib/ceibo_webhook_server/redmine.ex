@@ -14,7 +14,7 @@ defmodule CeiboWebhookServer.Redmine do
     Redminable.card(redmineable)
   end
 
-  def post(card) do
+  def post({:ok, card}) do
     HTTPoison.post(
       Application.get_env(:ceibo_webhook_server, :redmine_url),
       card |> Jason.encode!(),
@@ -24,6 +24,8 @@ defmodule CeiboWebhookServer.Redmine do
       ]
     )
   end
+
+  def post(_), do: false
 
   def project_id(name) do
     %{
