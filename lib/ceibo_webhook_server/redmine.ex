@@ -10,8 +10,8 @@ defmodule CeiboWebhookServer.Redmine do
     Redminable.is_assigned_to(redmineable, pattern)
   end
 
-  def card(remineable) do
-    false
+  def card(redmineable) do
+    Redminable.card(redmineable)
   end
 
   def project_id(name) do

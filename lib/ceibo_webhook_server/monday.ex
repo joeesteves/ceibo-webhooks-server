@@ -15,14 +15,14 @@ defimpl CeiboWebhookServer.Redminable, for: CeiboWebhookServer.Monday do
   end
 
   def card(redmineable) do
-    pulse = get_in(redmineable, ~w(remineable items)) |> List.first
+    [item | _] = get_in(redmineable.data, ~w(data items))
 
     {:ok,
      %{
        issue: %{
          project_id: CeiboWebhookServer.Redmine.project_id("isowean"),
-         subject: Map.get(pulse, "name"),
-         description: Map.get(pulse, "url")
+         subject: item["name"],
+         description: pulse_url(item["board"]["id"], item["id"])
        }
     }}
   end
@@ -33,5 +33,9 @@ defimpl CeiboWebhookServer.Redminable, for: CeiboWebhookServer.Monday do
     Enum.any?(persons, fn person ->
       ~s(#{Map.get(person, "id")}) |> String.match?(assigned_to_pattern)
     end)
+  end
+
+  defp pulse_url(board_id, pulse_id) do
+    "https://isowean.monday.com/boards/#{board_id}/pulses/#{pulse_id}"
   end
 end
