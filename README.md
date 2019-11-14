@@ -27,6 +27,17 @@ $> CeiboWebhookServer.TrelloHooks.create(model_id, redmine_project_alias)
   end
 ```
 
-To add new remine proyects check pm.ceibo.co/projects.json?key=#{redmine_key}
+_To add new remine proyects check pm.ceibo.co/projects.json?key=#{redmine_key}_
 
-To get trello model_id add .json to board url
+_To get trello model_id add .json to board url_
+
+## Create TrelloHook
+
+curl -X POST -H "Content-Type: application/json" \
+https://api.trello.com/1/tokens/f02829cf05b39125377a641b1cd3e41681e23f3f1bb5c8aa81a5c9eb7de7f508/webhooks/ \
+-d '{
+  "key": "b18a9b19ee35f035ad85154792b4402b",
+  "callbackURL": "http://hooks.ceibo.pm/trello",
+  "idModel":"5c519e1e85490d20ec6e5c51",
+  "description": "My first webhook"
+}'
