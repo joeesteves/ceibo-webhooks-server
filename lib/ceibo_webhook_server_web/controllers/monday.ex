@@ -5,7 +5,7 @@ defmodule CeiboWebhookServerWeb.MondayController do
   def index(conn, params) do
     monday_hook = %Monday{data: params}
 
-    case Redmine.is_assigned_to(monday_hook, ~r/10652967/) |> IO.inspect do
+    case Redmine.is_assigned_to(monday_hook, ~r/10652967/) do
       {:ok, redminable} ->
         redminable
         |>Monday.fetch_pulse

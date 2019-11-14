@@ -14,6 +14,17 @@ defmodule CeiboWebhookServer.Redmine do
     Redminable.card(redmineable)
   end
 
+  def post(card) do
+    HTTPoison.post(
+      Application.get_env(:ceibo_webhook_server, :redmine_url),
+      card |> Jason.encode!(),
+      [
+        {"content-type", "application/json"},
+        {"X-Redmine-API-Key", Application.get_env(:ceibo_webhook_server, :redmine_key)}
+      ]
+    )
+  end
+
   def project_id(name) do
     %{
       "bar" => 11,

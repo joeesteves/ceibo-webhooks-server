@@ -18,17 +18,6 @@ defmodule CeiboWebhookServer.Monday do
     %Monday{data: data}
   end
 
-  def post(card) do
-    HTTPoison.post(
-      Application.get_env(:ceibo_webhook_server, :redmine_url),
-      card |> Jason.encode!(),
-      [
-        {"content-type", "application/json"},
-        {"X-Redmine-API-Key", Application.get_env(:ceibo_webhook_server, :redmine_key)}
-      ]
-    )
-  end
-
   defp graphql(pulse_id) do
     ~s({"query":"{items(ids: [#{pulse_id}], limit:1\){id name board{id}}}"})
   end
