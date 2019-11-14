@@ -4,30 +4,34 @@ defmodule CeiboWebhookServer.Monday do
 end
 
 defimpl CeiboWebhookServer.Redminable, for: CeiboWebhookServer.Monday do
-  def is_assigned_to(remineable, assigned_to_pattern) do
-    column = get_in(remineable, ~w(event columnId))
+  def is_assigned_to(redmineable, assigned_to_pattern) do
+    data = get_in(redmineable.data, ~w(event))
+    column = get_in(data, ~w(columnId))
 
     (column == "person" &&
-       assigned_to_value(remineable) |> String.match?(assigned_to_pattern) &&
-       {:ok, remineable}) ||
+       assigned_to_value(data, assigned_to_pattern) &&
+       {:ok, redmineable}) ||
       {:filtered}
   end
 
-  def card(remineable) do
-    pulse = get_in(remineable, ~w(remineable items)) |> List.first
+  def card(redmineable) do
+    pulse = get_in(redmineable, ~w(remineable items)) |> List.first
 
     {:ok,
      %{
        issue: %{
-         project_id: CeiboWebhookServer.Redmine.proyect_id("isowean"),
+         project_id: CeiboWebhookServer.Redmine.project_id("isowean"),
          subject: Map.get(pulse, "name"),
          description: Map.get(pulse, "url")
        }
     }}
   end
 
-  defp assigned_to_value(remineable) do
-    person = get_in(remineable, ~w(value personsAndTeams)) |> List.first
-    id = ~s(#{Map.get(person,"id")})
+  defp assigned_to_value(data, assigned_to_pattern) do
+    persons = get_in(data, ~w(value personsAndTeams))
+
+    Enum.any?(persons, fn person ->
+      ~s(#{Map.get(person, "id")}) |> String.match?(assigned_to_pattern)
+    end)
   end
 end

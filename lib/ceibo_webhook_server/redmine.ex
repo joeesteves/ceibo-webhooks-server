@@ -4,12 +4,14 @@ defprotocol CeiboWebhookServer.Redminable do
 end
 
 defmodule CeiboWebhookServer.Redmine do
-  def is_assigned_to(remineable, pattern) do
-    Redminable.is_assigned_to(redminable, data)
+  alias CeiboWebhookServer.Redminable
+
+  def is_assigned_to(redmineable, pattern) do
+    Redminable.is_assigned_to(redmineable, pattern)
   end
 
   def card(remineable) do
-    Redminable.is_assigned_to(redminable, data)
+    false
   end
 
   def project_id(name) do
