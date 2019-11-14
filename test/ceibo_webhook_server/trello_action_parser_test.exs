@@ -20,14 +20,14 @@ defmodule TrelloActionParserTest do
     test "parse ok card" do
       data = MockData.trello_card()
 
-      assert {:ok, card} = TrelloActionParser.filter(data) |> TrelloActionParser.parse
-      assert (~w(project_id subject) -- get_in(card, ~w(issue)) |> Map.keys) == []
+      assert {:ok, card} = TrelloActionParser.filter(data) |> TrelloActionParser.parse() |> IO.inspect
+      assert (~w(project_id subject)a -- Map.keys(card.issue)) == []
     end
 
     test "parse filtered" do
       data = MockData.trello_card_wrong_member()
 
-      assert {:filtered} == TrelloActionParser.filter(data) |> TrelloActionParser.parse
+      assert {:filtered} == TrelloActionParser.filter(data) |> TrelloActionParser.parse()
     end
   end
 end
