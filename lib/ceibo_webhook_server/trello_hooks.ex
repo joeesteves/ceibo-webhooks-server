@@ -14,6 +14,5 @@ defmodule CeiboWebhookServer.TrelloHooks do
       |> Jason.encode!(),
       [{"content-type", "application/json"}]
     )
-    |> IO.inspect
   end
 end

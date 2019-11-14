@@ -11,6 +11,7 @@ config :ceibo_webhook_server,
   redmine_key: System.get_env("REDMINE_KEY"),
   trello_key: System.get_env("TRELLO_KEY"),
   trello_token: System.get_env("TRELLO_TOKEN"),
+  monday_url: "https://api.monday.com/v2/",
   monday_token: System.get_env("MONDAY_TOKEN")
 
 # Configures the endpoint
